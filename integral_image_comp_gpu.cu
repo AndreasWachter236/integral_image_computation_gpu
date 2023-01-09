@@ -81,6 +81,7 @@ int main()
     // run calculation //
     calculate_iImage <<< gridSize, blockSize >>>(iImage_gpu.data, iImage_gpu.width, iImage_gpu.height);
 
+    // copy data to cpu //
     cudaMemcpy(iImage_cpu.data, iImage_gpu.data, iImage_gpu.pixels * sizeof(int), cudaMemcpyDeviceToHost);
 
     auto tEnd = chrono::high_resolution_clock::now();
